@@ -35,8 +35,8 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped datatable">
-                        <thead class="table-light">
+                    <table id="dataTable" class="table table-bordered table-striped table-hover table-sm">
+                        <thead>
                             <tr>
                                 <th class="text-center text-uppercase small text-muted fw-semibold">
                                     Nombre</th>
@@ -54,10 +54,10 @@
                                     <td class="fw-medium ps-4">{{ $item->description }}</td>
                                     <td class="text-center">
                                         <div class="d-flex gap-2 justify-content-center">
-                                            <a href="#" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                                            <a href="#" class="btn btn-sm btn-primary rounded-pill px-3">
                                                 <i class="bi bi-pencil-square me-1"></i>Editar
                                             </a>
-                                            <a href="#" class="btn btn-sm btn-outline-danger rounded-pill px-3">
+                                            <a href="#" class="btn btn-sm btn-danger rounded-pill px-3 ml-2">
                                                 <i class="bi bi-trash3 me-1"></i>Eliminar
                                             </a>
                                         </div>
@@ -72,8 +72,6 @@
     </div>
 @stop
 
-@section('css')
-@stop
-
 @section('js')
+    @include('utils.dataTable.dataTableConfig')
 @stop
