@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -34,4 +35,15 @@ Route::prefix('/admin/categories')->middleware('auth')->group(function(){
     Route::put('/update{category}', [CategoryController::class, 'update'])->name('categories.update');
     Route::get('/show{id}', [CategoryController::class, 'show'])->name('categories.show');
     Route::delete('/destroy{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+});
+
+// Branches
+Route::prefix('/admin/branches')->middleware('auth')->group(function(){
+    Route::get('/', [BranchController::class, 'index'])->name('branches');
+    Route::get('/create', [BranchController::class, 'create'])->name('branches.create');
+    Route::post('/store', [BranchController::class, 'store'])->name('branches.store');
+    Route::get('/edit{branch}', [BranchController::class, 'edit'])->name('branches.edit');
+    Route::put('/update{branch}', [BranchController::class, 'update'])->name('branches.update');
+    Route::get('/show{id}', [BranchController::class, 'show'])->name('branches.show');
+    Route::delete('/destroy{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
 });

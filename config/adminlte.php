@@ -334,6 +334,11 @@ return [
             'icon' => 'fas fa-fw fa-list',
             // 'classes' => 'bg-red text-white',
         ],
+        [
+            'text' => 'Sucursales',
+            'url' => 'admin/branches',
+            'icon' => 'fas fa-fw fa-building',
+        ],
 
         // Account
         ['header' => 'Ajustes de Usuario'],

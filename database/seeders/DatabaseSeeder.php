@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Branch;
 use App\Models\Category;
 use App\Models\User;
 use Database\Factories\CategoryFactory;
@@ -21,6 +22,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Edward J. Pineda',
             'email' => 'epineda@yopmail.com',
         ]);
-        Category::factory(100)->create();
+        
+        // Category::factory(100)->create();
+        Branch::factory(10)->create();
+        
+        $this->call([
+            CategorySeeder::class,
+        ]);
+
     }
 }
