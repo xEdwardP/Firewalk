@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,38 +23,49 @@ class CategoryController extends Controller
         return view('admin.categories.create', compact('title'));
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-        ]);
+        try {
+            Category::create($request->validated());
 
-        $category = new Category();
-        $category->name = $request->input('name');
-        $category->description = $request->input('description');
-        $category->save();
-
-        return redirect()->route('categories.index')->with('success', 'Categoria creada exitosamente.');
+            return to_route('categories.index')->with('success', '¡Categoría creada exitosamente!');
+        } catch (\Throwable $e) {
+            return to_route('categories.index')->with('error', 'No se pudo guardar la categoría.' . $e->getMessage());
+        }
     }
 
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        $title = 'Detalle de Categoria';
+        $item = Category::findOrFail($id);
+        return view('admin.categories.show', compact('title', 'item'));
     }
 
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $title = 'Editar Categoria';
+        $item = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('title', 'item'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        try {
+            $category->update($request->validated());
+            return to_route('categories.index')->with('success', '¡Categoría actualizada!');
+        } catch (\Throwable $e) {
+            return to_route('categories.index')->with('error', 'No se pudo actualizar: ' . $e->getMessage());
+        }
     }
+
 
     public function destroy(Category $category)
     {
-        //
+        try {
+            $category->delete();
+            return to_route('categories.index')->with('success', '¡Categoría eliminada!');
+        } catch (\Throwable $e) {
+            return to_route('categories.index')->with('error', 'No se pudo eliminar: ' . $e->getMessage());
+        }
     }
 }
