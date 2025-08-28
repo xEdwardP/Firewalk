@@ -1,24 +1,11 @@
 @extends('adminlte::page')
 
-{{-- @section('title', 'Sucursales') --}}
-
 @section('content_header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><i class="fa-solid fa-list"></i>&nbsp;{{ $title }}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('branches') }}">Sucursales</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Listado de Sucursales</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-pages.page-header :title="$title" :breadcrumbs="[
+        ['label' => 'Inicio', 'route' => 'home'],
+        ['label' => 'Sucursales', 'route' => 'branches'],
+        ['label' => 'Listado de Sucursales'],
+    ]" icon="fas fa-fw fa-building" />
 @stop
 
 @section('content')
@@ -38,15 +25,12 @@
                     <table id="dataTable" class="table table-bordered table-striped table-hover table-sm">
                         <thead>
                             <tr>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
-                                    #</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
-                                    Nombre</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
-                                    Dirección</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
-                                    Acciones
-                                </th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Dirección</th>
+                                <th class="text-center">Teléfono</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,6 +39,13 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->address }}</td>
+                                    <td class="text-center">{{ $item->phone }}</td>
+                                    <td class="text-center">
+                                        @if ($item->is_active == 1)
+                                            <span class="badge badge-success rounded-pill px-2">Activo</span>
+                                        @else
+                                            <span class="badge badge-danger rounded-pill px-2">Inactivo</span>
+                                        @endif
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ route('branches.show', $item->id) }}"
@@ -65,8 +56,7 @@
                                                 class="btn btn-sm btn-warning rounded-pill px-3 ml-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar
                                             </a>
-                                            <x-delete-button :action="route('branches.destroy', $item->id)" :item-id="$item->id"
-                                                label="Eliminar" />
+                                            <x-delete-button :action="route('branches.destroy', $item->id)" :item-id="$item->id" label="Eliminar" />
                                         </div>
                                     </td>
                                 </tr>

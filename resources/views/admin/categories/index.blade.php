@@ -3,22 +3,11 @@
 {{-- @section('title', 'Categorias') --}}
 
 @section('content_header')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0"><i class="fa-solid fa-list"></i>&nbsp;{{ $title }}</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">Categorias</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Listado de Categorias</li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
+    <x-pages.page-header :title="$title" :breadcrumbs="[
+        ['label' => 'Inicio', 'route' => 'home'],
+        ['label' => 'Categorias', 'route' => 'categories.index'],
+        ['label' => 'Listado de Categorias'],
+    ]" icon="fas fa-fw fa-list" />
 @stop
 
 @section('content')
@@ -38,13 +27,13 @@
                     <table id="dataTable" class="table table-bordered table-striped table-hover table-sm">
                         <thead>
                             <tr>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
+                                <th class="text-center">
                                     #</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
+                                <th class="text-center">
                                     Nombre</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
+                                <th class="text-center">
                                     Descripción</th>
-                                <th class="text-center text-uppercase small text-muted fw-semibold">
+                                <th class="text-center">
                                     Acciones
                                 </th>
                             </tr>
@@ -65,8 +54,7 @@
                                                 class="btn btn-sm btn-warning rounded-pill px-3 ml-2">
                                                 <i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar
                                             </a>
-                                            <x-delete-button :action="route('categories.destroy', $item->id)" :item-id="$item->id"
-                                                label="Eliminar" />
+                                            <x-delete-button :action="route('categories.destroy', $item->id)" :item-id="$item->id" label="Eliminar" />
                                         </div>
                                     </td>
                                 </tr>

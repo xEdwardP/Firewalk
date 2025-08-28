@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name', 100);
             $table->string('address', 255);
             $table->string('phone', 20)->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

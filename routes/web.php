@@ -44,6 +44,6 @@ Route::prefix('/admin/branches')->middleware('auth')->group(function(){
     Route::post('/store', [BranchController::class, 'store'])->name('branches.store');
     Route::get('/edit{branch}', [BranchController::class, 'edit'])->name('branches.edit');
     Route::put('/update{branch}', [BranchController::class, 'update'])->name('branches.update');
-    Route::get('/show{id}', [BranchController::class, 'show'])->name('branches.show');
+    Route::get('/show{branch}', [BranchController::class, 'show'])->name('branches.show');
     Route::delete('/destroy{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
 });
