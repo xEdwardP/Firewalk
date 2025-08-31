@@ -6,8 +6,9 @@
     'required' => false,
     'readonly' => false,
     'autofocus' => false,
-    'rows' => 3,
-    'maxlength' => null,
+    'step' => '1',
+    'min' => null,
+    'max' => null,
     'icon' => null,
 ])
 
@@ -17,8 +18,6 @@
             {{ $label }}
             @if ($required)
                 <sup class="text-danger">*</sup>
-            @else
-                <sup class="text-danger">{Opcional}</sup>
             @endif
         </label>
     @endif
@@ -32,10 +31,12 @@
             </div>
         @endif
 
-        <textarea name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder }}"
-            rows="{{ $rows }}" @if ($maxlength) maxlength="{{ $maxlength }}" @endif
+        <input type="number" name="{{ $name }}" id="{{ $name }}" value="{{ old($name, $value) }}"
+            placeholder="{{ $placeholder }}" step="{{ $step }}"
+            @if ($min !== null) min="{{ $min }}" @endif
+            @if ($max !== null) max="{{ $max }}" @endif
             class="form-control @error($name) is-invalid @enderror" @if ($required) required @endif
-            @if ($readonly) readonly @endif @if ($autofocus) autofocus @endif>{{ old($name, $value) }}</textarea>
+            @if ($readonly) readonly @endif @if ($autofocus) autofocus @endif>
     </div>
 
     <x-error :field="$name" class="mt-1" />

@@ -27,7 +27,6 @@ class CategoryController extends Controller
     {
         try {
             Category::create($request->validated());
-
             return to_route('categories.index')->with('success', '¡Categoría creada exitosamente!');
         } catch (\Throwable $e) {
             return to_route('categories.index')->with('error', 'No se pudo guardar la categoría.' . $e->getMessage());

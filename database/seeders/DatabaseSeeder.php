@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Branch;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\User;
 use Database\Factories\CategoryFactory;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,12 +24,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'epineda@yopmail.com',
         ]);
         
-        // Category::factory(100)->create();
-        Branch::factory(10)->create();
-        
         $this->call([
             CategorySeeder::class,
         ]);
+        
+        Branch::factory(10)->create();
+        Product::factory(50)->create();
 
     }
 }

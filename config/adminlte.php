@@ -336,10 +336,14 @@ return [
         ],
         [
             'text' => 'Sucursales',
-            'url' => 'admin/branches',
+            'route' => 'branches',
             'icon' => 'fas fa-fw fa-building',
         ],
-
+        [
+            'text' => 'Productos',
+            'route'  => 'products',
+            'icon' => 'fas fa-fw fa-boxes',
+        ],
         // Account
         ['header' => 'Ajustes de Usuario'],
         [

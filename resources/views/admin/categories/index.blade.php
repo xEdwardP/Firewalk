@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="dataTable" class="table table-bordered table-striped table-hover table-sm">
+                    <table id="dataTable" class="table table-bordered table-striped table-hover table-sm table-responsive-sm table-responsive-md">
                         <thead>
                             <tr>
                                 <th class="text-center">

@@ -56,7 +56,7 @@
     </label>
 
     <label class="toggle-switch">
-        <input type="hidden" name="is_active" value="0">
+        <input type="hidden" name="{{ $name }}" value="0">
         <input type="checkbox" name="{{ $name }}" id="{{ $name }}" value="1"
             @if (old($name, $checked)) checked @endif @if ($required) required @endif
             @if ($disabled) disabled @endif>

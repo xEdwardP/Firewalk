@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,4 +47,15 @@ Route::prefix('/admin/branches')->middleware('auth')->group(function(){
     Route::put('/update{branch}', [BranchController::class, 'update'])->name('branches.update');
     Route::get('/show{branch}', [BranchController::class, 'show'])->name('branches.show');
     Route::delete('/destroy{branch}', [BranchController::class, 'destroy'])->name('branches.destroy');
+});
+
+// Products
+Route::prefix('/admin/products')->middleware('auth')->group(function(){
+    Route::get('/', [ProductController::class, 'index'])->name('products');
+    Route::get('/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/store', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/edit{product}', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/update{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::get('/show{product}', [ProductController::class, 'show'])->name('products.show');
+    Route::delete('/destroy{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });

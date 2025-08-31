@@ -76,7 +76,6 @@
                 title: 'Error!',
                 text: '{{ session('error') }}',
                 icon: 'error',
-                timer: 3000,
                 confirmButtonText: 'Aceptar'
             });
         @endif
