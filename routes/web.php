@@ -5,6 +5,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -58,4 +59,12 @@ Route::prefix('/admin/products')->middleware('auth')->group(function(){
     Route::put('/update{product}', [ProductController::class, 'update'])->name('products.update');
     Route::get('/show{product}', [ProductController::class, 'show'])->name('products.show');
     Route::delete('/destroy{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
+
+// Suppliers
+Route::prefix('/admin/suppliers')->middleware('auth')->group(function(){
+    Route::get('/', [SupplierController::class, 'index'])->name('suppliers');
+    Route::post('/store', [SupplierController::class, 'store'])->name('suppliers.store');
+    Route::put('/update{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
+    Route::delete('/destroy{supplier}', [SupplierController::class, 'destroy'])->name('suppliers.destroy');
 });

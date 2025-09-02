@@ -8,6 +8,7 @@
     'autofocus' => false,
     'maxlength' => 255,
     'icon' => null,
+    'type' => 'text',
 ])
 
 <div class="form-group">
@@ -31,11 +32,13 @@
             </div>
         @endif
 
+        {{-- value="{{ old($name, $value) }}" --}}
+
         <input 
-            type="text"
+            type="{{ $type }}"
             name="{{ $name }}"
             id="{{ $name }}"
-            value="{{ old($name, $value) }}"
+            value="{{ $value }}"
             placeholder="{{ $placeholder }}"
             maxlength="{{ $maxlength }}"
             class="form-control @error($name) is-invalid @enderror"

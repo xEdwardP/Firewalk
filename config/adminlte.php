@@ -344,6 +344,11 @@ return [
             'route'  => 'products',
             'icon' => 'fas fa-fw fa-boxes',
         ],
+        [
+            'text' => 'Proveedores',
+            'route'  => 'suppliers',
+            'icon' => 'fas fa-fw fa-truck',
+        ],
         // Account
         ['header' => 'Ajustes de Usuario'],
         [
