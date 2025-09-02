@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class SupplierController extends Controller
 {
@@ -29,6 +30,12 @@ class SupplierController extends Controller
     public function update(SupplierRequest $request, Supplier $supplier)
     {
         try {
+            // Validar los datos en el modal de edición
+            $validator = Validator::make($request->all());
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput()->with('modal_id', $supplier->id);
+            }
+
             $supplier->update($request->validated());
             return to_route('suppliers')->with('success', 'Proveedor actualizado exitosamente.');
         } catch (\Throwable $e) {

@@ -245,4 +245,15 @@
 
 @section('js')
     @include('utils.dataTable.dataTableConfig')
+
+    @if ($errors->any())
+        <script>
+            @if (session('modal_id'))
+                var modalId = "{{ session('modal_id') }}";
+                $('#ModalEdit' + modalId).modal('show');
+            @else
+                $('#ModalCreate').modal('show');
+            @endif
+        </script>
+    @endif
 @stop
