@@ -3,15 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Auth::routes();
 
@@ -19,12 +14,12 @@ Auth::routes();
 // Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 
 // Login
-Route::get('/', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+// Route::get('/', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
 // Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
 
 
 Route::middleware("auth")->group(function(){
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [AdminController::class, 'index'])->name('home');
     // Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
