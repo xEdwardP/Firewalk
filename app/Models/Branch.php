@@ -20,4 +20,14 @@ class Branch extends Model
         'phone',
         'is_active',
     ];
+
+    public function inventoryBranchBatches()
+    {
+        return $this->hasMany(InventoryBranchBatch::class, 'branch_id');
+    }
+
+    public function inventoryMovements()
+    {
+        return $this->hasMany(InventoryMovement::class, 'branch_id');
+    }
 }

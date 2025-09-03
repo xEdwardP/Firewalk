@@ -21,4 +21,14 @@ class Supplier extends Model
     ];
 
     protected $table = 'suppliers';
+
+    public function batches()
+    {
+        return $this->hasMany(Batch::class);
+    }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
