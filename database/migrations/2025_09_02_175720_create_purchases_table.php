@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->cascadeOnDelete();
             $table->timestamp('purchased_at');
-            $table->decimal('total', 10,2);
-            $table->string('payment_status', 100);
-            // $table->enum('payment_status', ['pending', 'paid', 'partial', 'cancelled'])->default('pending');
-            $table->text('observations')->nullable();
+            $table->decimal('total', 10,2)->default(0);
+            $table->string('payment_status', 100)->default('pendiente');
+            $table->text('observations')->nullable()->default('N/A');
             $table->timestamps();
         });
     }

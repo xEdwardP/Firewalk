@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -62,4 +63,15 @@ Route::prefix('/admin/suppliers')->middleware('auth')->group(function(){
     Route::post('/store', [SupplierController::class, 'store'])->name('suppliers.store');
     Route::put('/update{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
     Route::delete('/destroy{supplier}', [SupplierController::class, 'destroy'])->name('suppliers.destroy');
+});
+
+// Purchases
+Route::prefix('/admin/purchases')->middleware('auth')->group(function(){
+    Route::get('/', [PurchaseController::class, 'index'])->name('purchases');
+    Route::get('/create', [PurchaseController::class, 'create'])->name('purchases.create');
+    Route::post('/store', [PurchaseController::class, 'store'])->name('purchases.store');
+    Route::get('/edit{purchase}', [PurchaseController::class, 'edit'])->name('purchases.edit');
+    Route::put('/update{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
+    Route::get('/show{purchase}', [PurchaseController::class, 'show'])->name('purchases.show');
+    Route::delete('/destroy{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
 });

@@ -349,6 +349,11 @@ return [
             'route'  => 'suppliers',
             'icon' => 'fas fa-fw fa-truck',
         ],
+        [
+            'text' => 'Compras',
+            'route'  => 'purchases',
+            'icon' => 'fas fa-fw fa-shopping-cart',
+        ],
         // Account
         ['header' => 'Ajustes de Usuario'],
         [
@@ -451,8 +456,8 @@ return [
     |
     */
 
-'plugins' => [
-       'Datatables' => [
+    'plugins' => [
+        'Datatables' => [
             'active' => true,
             'files' => [
                 [
