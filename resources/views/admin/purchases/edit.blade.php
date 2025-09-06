@@ -25,23 +25,19 @@
                     <div class="form-row">
                         <div class="form-group col-md-3 mb-2">
                             <label for="">Proveedor</label>
-                            <p>{{ $item->supplier->company }}</p>
+                            <p>{{ $purchase->supplier->company }}</p>
                         </div>
                         <div class="form-group col-md-3 mb-2">
                             <label for="">Fecha de Compra</label>
-                            <p>{{ $item->purchased_at }}</p>
+                            <p>{{ $purchase->purchased_at }}</p>
                         </div>
                         <div class="form-group col-md-3 mb-2">
                             <label for="">Estado de Compra</label>
-                            <p>{{ $item->payment_status }}</p>
+                            <p>{{ $purchase->payment_status }}</p>
                         </div>
                         <div class="form-group col-md-3 mb-2">
-                            <label for="">Total</label>
-                            <p>L {{ $item->total }}</p>
-                        </div>
-                        <div class="form-group col-md-12 mb-2">
                             <label for="">Observaciones</label>
-                            <p>{{ $item->observations }}</p>
+                            <p>{{ $purchase->observations }}</p>
                         </div>
                     </div>
                 </div>
@@ -56,6 +52,7 @@
                     <h3 class="card-title"><i class="fa-solid fa-clipboard-list"></i>&nbsp;Paso 2 | Agregar productos</h3>
                 </div>
                 <div class="card-body" style="display: block;">
+                    <livewire:admin.purchases.items-purchase :purchase="$purchase" />
                 </div>
             </div>
         </div>
@@ -63,9 +60,17 @@
 @stop
 
 @section('css')
+    <style>
+        .select2-container .select2-selection--single {
+            height: 40px !important;
+        }
+    </style>
     @livewireStyles
 @stop
 
 @section('js')
+    {{-- <script>
+        $('.select2').select2({});
+    </script> --}}
     @livewireScripts
 @stop

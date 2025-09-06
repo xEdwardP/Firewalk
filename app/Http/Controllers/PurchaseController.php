@@ -47,10 +47,10 @@ class PurchaseController extends Controller
         return view('admin.purchases.edit', [
             'title' => 'Editar Compra',
             'label' => 'Compra N-' . $purchase->id,
-            'item' => $purchase,
-            'suppliers' => Supplier::pluck('company', 'id'),
-            'products' => Product::pluck('name', 'id'),
-            'branches' => Branch::pluck('name', 'id'),
+            'purchase' => $purchase,
+            'suppliers' => Supplier::all(),
+            'products' => Product::all(),
+            'branches' => Branch::all(),
         ]);
     }
 }

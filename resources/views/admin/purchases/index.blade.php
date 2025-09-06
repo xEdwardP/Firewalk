@@ -17,7 +17,7 @@
 
                     <div class="card-tools">
                         <a href="{{ route('purchases.create') }}" class="btn btn-outline-primary btn-sm rounded-pill">
-                            <i class="fa-solid fa-circle-plus"></i>&nbsp; Nueva Compra
+                            <i class="fa-solid fa-circle-plus"></i>&nbsp;Nueva Compra
                         </a>
                     </div>
                 </div>
