@@ -43,16 +43,16 @@
                                     <td class="text-center">L&nbsp;{{ $item->total }}</td>
                                     <td class="text-center">
                                         @switch($item->payment_status)
-                                            @case('pagada')
-                                                <span class="badge badge-success rounded-pill px-2">Pagada</span>
+                                            @case('finalizada')
+                                                <span class="badge badge-success rounded-pill px-2">Finalizada</span>
                                             @break
 
                                             @case('pendiente')
                                                 <span class="badge badge-warning rounded-pill px-2">Pendiente</span>
                                             @break
 
-                                            @case('cancelada')
-                                                <span class="badge badge-secondary rounded-pill px-2">Cancelada</span>
+                                            @case('Enviada al proveedor')
+                                                <span class="badge badge-secondary rounded-pill px-2">Enviada al proveedor</span>
                                             @break
 
                                             @default

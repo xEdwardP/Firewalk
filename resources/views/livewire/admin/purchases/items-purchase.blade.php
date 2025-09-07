@@ -1,6 +1,5 @@
 <div>
     <div class="row">
-        {{-- Formulario de ingreso --}}
         <div class="col-md-4">
             <div class="card card-primary card-outline">
                 <div class="card-header py-2">
@@ -13,8 +12,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                             </div>
-                            <select wire:model.live="productId" name="product_id" id="productId" class="form-control select2"
-                                required>
+                            <select wire:model.live="productId" name="product_id" id="productId"
+                                class="form-control select2" required>
                                 <option value="">Seleccione un producto...</option>
                                 @foreach ($products as $product)
                                     <option value="{{ $product->id }}">
@@ -97,11 +96,20 @@
                             <span class="d-none d-md-inline">&nbsp;Agregar</span>
                         </button>
                     </div>
+
+                    <div class="form-row mt-3">
+                        <div class="col-md-12 mb-2">
+                            <a href="{{ route('purchases.sendEmail', $purchase) }}"
+                                class="btn btn-outline-primary btn-block">
+                                <i class="fas fa-envelope"></i>
+                                <span class="d-none d-md-inline">&nbsp;Enviar correo al proveedor</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        {{-- Tabla de productos agregados --}}
         <div class="col-md-8">
             <div class="card card-secondary card-outline">
                 <div class="card-header py-2">

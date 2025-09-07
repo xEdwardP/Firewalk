@@ -71,6 +71,8 @@ Route::prefix('/admin/purchases')->middleware('auth')->group(function(){
     Route::get('/create', [PurchaseController::class, 'create'])->name('purchases.create');
     Route::post('/store', [PurchaseController::class, 'store'])->name('purchases.store');
     Route::get('/edit{purchase}', [PurchaseController::class, 'edit'])->name('purchases.edit');
+    Route::get('/send-email{purchase}', [PurchaseController::class, 'sendEmail'])->name('purchases.sendEmail');
+    Route::post('/complete-purchase{purchase}', [PurchaseController::class, 'completePurchase'])->name('purchases.completePurchase');
     Route::put('/update{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
     Route::get('/show{purchase}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::delete('/destroy{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
