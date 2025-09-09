@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
@@ -19,13 +20,13 @@ Auth::routes();
 // Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
 
 
-Route::middleware("auth")->group(function(){
+Route::middleware("auth")->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
     // Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 // Categories
-Route::prefix('/admin/categories')->middleware('auth')->group(function(){
+Route::prefix('/admin/categories')->middleware('auth')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
     Route::post('/store', [CategoryController::class, 'store'])->name('categories.store');
@@ -36,7 +37,7 @@ Route::prefix('/admin/categories')->middleware('auth')->group(function(){
 });
 
 // Branches
-Route::prefix('/admin/branches')->middleware('auth')->group(function(){
+Route::prefix('/admin/branches')->middleware('auth')->group(function () {
     Route::get('/', [BranchController::class, 'index'])->name('branches');
     Route::get('/create', [BranchController::class, 'create'])->name('branches.create');
     Route::post('/store', [BranchController::class, 'store'])->name('branches.store');
@@ -47,7 +48,7 @@ Route::prefix('/admin/branches')->middleware('auth')->group(function(){
 });
 
 // Products
-Route::prefix('/admin/products')->middleware('auth')->group(function(){
+Route::prefix('/admin/products')->middleware('auth')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products');
     Route::get('/create', [ProductController::class, 'create'])->name('products.create');
     Route::post('/store', [ProductController::class, 'store'])->name('products.store');
@@ -58,7 +59,7 @@ Route::prefix('/admin/products')->middleware('auth')->group(function(){
 });
 
 // Suppliers
-Route::prefix('/admin/suppliers')->middleware('auth')->group(function(){
+Route::prefix('/admin/suppliers')->middleware('auth')->group(function () {
     Route::get('/', [SupplierController::class, 'index'])->name('suppliers');
     Route::post('/store', [SupplierController::class, 'store'])->name('suppliers.store');
     Route::put('/update{supplier}', [SupplierController::class, 'update'])->name('suppliers.update');
@@ -66,7 +67,7 @@ Route::prefix('/admin/suppliers')->middleware('auth')->group(function(){
 });
 
 // Purchases
-Route::prefix('/admin/purchases')->middleware('auth')->group(function(){
+Route::prefix('/admin/purchases')->middleware('auth')->group(function () {
     Route::get('/', [PurchaseController::class, 'index'])->name('purchases');
     Route::get('/create', [PurchaseController::class, 'create'])->name('purchases.create');
     Route::post('/store', [PurchaseController::class, 'store'])->name('purchases.store');
@@ -76,4 +77,9 @@ Route::prefix('/admin/purchases')->middleware('auth')->group(function(){
     Route::put('/update{purchase}', [PurchaseController::class, 'update'])->name('purchases.update');
     Route::get('/show{purchase}', [PurchaseController::class, 'show'])->name('purchases.show');
     Route::delete('/destroy{purchase}', [PurchaseController::class, 'destroy'])->name('purchases.destroy');
+});
+
+// Batches
+Route::prefix('/admin/batches')->middleware('auth')->group(function () {
+    Route::get('/', [BatchController::class, 'index'])->name('batches');
 });

@@ -354,6 +354,11 @@ return [
             'route'  => 'purchases',
             'icon' => 'fas fa-fw fa-shopping-cart',
         ],
+        [
+            'text' => 'Lotes',
+            'route'  => 'batches',
+            'icon' => 'fas fa-fw fa-box',
+        ],
         // Account
         ['header' => 'Ajustes de Usuario'],
         [

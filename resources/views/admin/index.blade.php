@@ -55,6 +55,36 @@
 
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
+                <a href="{{ route('products') }}" class="info-box-icon">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/products.gif') }}" alt="Productos">
+                    </span>
+                </a>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Cantidad de Productos</span>
+                    <span class="info-box-number">{{ $totalProducts }} Productos</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ route('purchases') }}" class="info-box-icon">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/cart.gif') }}" alt="Compras">
+                    </span>
+                </a>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Cantidad de Compras</span>
+                    <span class="info-box-number">{{ $totalPurchases }} Compras</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
                 <a href="#" class="info-box-icon">
                     <span class="info-box-icon bg-info">
                         <img src="{{ url('/img/users.gif') }}" alt="Usuarios">
@@ -70,15 +100,30 @@
 
         <div class="col-md-3 col-sm-6 col-12">
             <div class="info-box">
-                <a href="{{ route('products') }}" class="info-box-icon">
+                <a href="{{ route('batches') }}" class="info-box-icon">
                     <span class="info-box-icon bg-info">
-                        <img src="{{ url('/img/products.gif') }}" alt="Productos">
+                        <img src="{{ url('/img/box_uncheck.gif') }}" alt="Lotes Vencidos">
                     </span>
                 </a>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Cantidad de Productos</span>
-                    <span class="info-box-number">{{ $totalProducts }} Productos</span>
+                    <span class="info-box-text">Lotes Vencidos</span>
+                    <span class="info-box-number">{{ $totalExpiredBatches }} Lotes</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ route('batches') }}" class="info-box-icon">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/box_check.gif') }}" alt="Lotes Activos">
+                    </span>
+                </a>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">Lotes Activos</span>
+                    <span class="info-box-number">{{ $totalActiveBatches }} Lotes</span>
                 </div>
             </div>
         </div>
