@@ -3,7 +3,8 @@
 @section('content_header')
     <x-pages.page-header :title="$title" :breadcrumbs="[
         ['label' => 'Inicio', 'route' => 'home'],
-        ['label' => 'Lotes', 'route' => 'batches'],
+        ['label' => 'Inventario'],
+        ['label' => 'Lotes'],
         ['label' => 'Listado de Lotes'],
     ]" icon="fas fa-box" />
 @stop
@@ -43,7 +44,7 @@
                                     <td class="text-center align-middle">{{ $batch->remaining_quantity }}</td>
                                     <td class="text-center align-middle">
                                         <span
-                                            class="badge badge-pill 
+                                            class="badge badge-pill
                                         {{ $batch->is_expired ? 'badge-danger' : 'badge-success' }}">
                                             {{ $batch->is_expired ? 'Vencido' : 'Vigente' }}
                                         </span>
@@ -70,7 +71,6 @@
 
                                                     <div class="modal-body">
                                                         <div class="row">
-                                                            {{-- Lote y Producto --}}
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Código de Lote</label>
                                                                 <p class="font-weight-bold mb-0">{{ $batch->batch_code }}
@@ -81,7 +81,6 @@
                                                                 <p class="mb-0">{{ $batch->product->name }}</p>
                                                             </div>
 
-                                                            {{-- Proveedor y Estado --}}
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Proveedor</label>
                                                                 <p class="mb-0">{{ $batch->supplier->name }}</p>
@@ -98,7 +97,6 @@
                                                                 </div>
                                                             </div>
 
-                                                            {{-- Fechas --}}
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Fecha de Entrada</label>
                                                                 <p class="mb-0">{{ $batch->received_at }}</p>
@@ -108,7 +106,6 @@
                                                                 <p class="mb-0">{{ $batch->expires_at }}</p>
                                                             </div>
 
-                                                            {{-- Cantidades --}}
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Cantidad Inicial</label>
                                                                 <p class="mb-0">{{ $batch->starting_quantity }}</p>
@@ -118,7 +115,6 @@
                                                                 <p class="mb-0">{{ $batch->remaining_quantity }}</p>
                                                             </div>
 
-                                                            {{-- Precios --}}
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Precio de Compra</label>
                                                                 <p class="mb-0">L
@@ -131,12 +127,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </td>
-
                                 </tr>
                             @endforeach
                         </tbody>

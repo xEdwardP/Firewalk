@@ -299,133 +299,71 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        // [
-        //     'type' => 'navbar-search',
-        //     'text' => 'search',
-        //     'topnav_right' => true,
-        // ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
-        // [
-        //     'text' => 'blog',
-        //     'url' => 'admin/blog',
-        //     'can' => 'manage-blog',
-        // ],
-        // [
-        //     'text' => 'pages',
-        //     'url' => 'admin/pages',
-        //     'icon' => 'far fa-fw fa-file',
-        //     'label' => 4,
-        //     'label_color' => 'success',
-        // ],
-        ['header' => 'Menu'],
+        ['header' => 'Gestión General'],
+
         [
             'text' => 'Categorías',
-            'url' => 'admin/categories',
-            'icon' => 'fas fa-fw fa-list',
-            // 'classes' => 'bg-red text-white',
+            'url'  => 'admin/categories',
+            'icon' => 'fas fa-fw fa-tags',
         ],
         [
             'text' => 'Sucursales',
             'route' => 'branches',
-            'icon' => 'fas fa-fw fa-building',
+            'icon' => 'fas fa-fw fa-store-alt',
         ],
         [
             'text' => 'Productos',
-            'route'  => 'products',
-            'icon' => 'fas fa-fw fa-boxes',
+            'route' => 'products',
+            'icon' => 'fas fa-fw fa-box-open',
         ],
         [
             'text' => 'Proveedores',
-            'route'  => 'suppliers',
-            'icon' => 'fas fa-fw fa-truck',
+            'route' => 'suppliers',
+            'icon' => 'fas fa-fw fa-truck-loading',
         ],
         [
             'text' => 'Compras',
-            'route'  => 'purchases',
-            'icon' => 'fas fa-fw fa-shopping-cart',
+            'route' => 'purchases',
+            'icon' => 'fas fa-fw fa-shopping-bag',
         ],
         [
-            'text' => 'Lotes',
-            'route'  => 'batches',
-            'icon' => 'fas fa-fw fa-box',
+            'text' => 'Inventario',
+            'icon' => 'fas fa-fw fa-warehouse',
+            'submenu' => [
+                [
+                    'text' => 'Lotes',
+                    'route' => 'batches',
+                    'icon' => 'fas fa-fw fa-boxes',
+                ],
+                [
+                    'text' => 'Sucursales por Lotes',
+                    'route' => 'branches_in_batches',
+                    'icon' => 'fas fa-fw fa-map-marked-alt',
+                ],
+            ],
         ],
-        // Account
-        ['header' => 'Ajustes de Usuario'],
-        [
-            'text' => 'Perfil',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'Cambiar Contraseña',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+
+        // Sección de cuenta
+        // ['header' => 'Ajustes de Usuario'],
+
         // [
-        //     'text' => 'multilevel',
-        //     'icon' => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url' => '#',
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url' => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url' => '#',
-        //                 ],
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url' => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url' => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url' => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url' => '#',
-        //         ],
-        //     ],
-        // ],
-        // ['header' => 'labels'],
-        // [
-        //     'text' => 'important',
-        //     'icon_color' => 'red',
-        //     'url' => '#',
+        //     'text' => 'Perfil',
+        //     'route'  => '/',
+        //     'icon' => 'fas fa-fw fa-user-circle',
         // ],
         // [
-        //     'text' => 'warning',
-        //     'icon_color' => 'yellow',
-        //     'url' => '#',
-        // ],
-        // [
-        //     'text' => 'information',
-        //     'icon_color' => 'cyan',
-        //     'url' => '#',
+        //     'text' => 'Cambiar Contraseña',
+        //     'route'  => '/',
+        //     'icon' => 'fas fa-fw fa-key',
         // ],
     ],
+
+
 
     /*
     |--------------------------------------------------------------------------

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InventoryBranchBatchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
@@ -12,17 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('auth');
-// Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
-
-// Login
-// Route::get('/', [AdminController::class, 'index'])->name('admin.index')->middleware('auth');
-// Route::post('/logear', [AuthController::class, 'logear'])->name('logear');
-
-
 Route::middleware("auth")->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('home');
-    // Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 // Categories
@@ -80,6 +72,12 @@ Route::prefix('/admin/purchases')->middleware('auth')->group(function () {
 });
 
 // Batches
-Route::prefix('/admin/batches')->middleware('auth')->group(function () {
+Route::prefix('/admin/inventory/batches')->middleware('auth')->group(function () {
     Route::get('/', [BatchController::class, 'index'])->name('batches');
+});
+
+// Branches in Batches
+Route::prefix('/admin/inventory/branches_in_batches')->middleware('auth')->group(function () {
+    Route::get('/', [InventoryBranchBatchController::class, 'index'])->name('branches_in_batches');
+    Route::get('/inventory_in_branch/branch/{branch}', [InventoryBranchBatchController::class, 'showInventoryInBranch'])->name('inventory_in_branch');
 });
