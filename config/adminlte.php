@@ -345,6 +345,11 @@ return [
                     'route' => 'branches_in_batches',
                     'icon' => 'fas fa-fw fa-map-marked-alt',
                 ],
+                [
+                    'text' => 'Historial de movimientos',
+                    'route' => 'movements',
+                    'icon' => 'fas fa-fw fa-history',
+                ],
             ],
         ],
 

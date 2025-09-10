@@ -5,6 +5,7 @@ use App\Http\Controllers\BatchController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\InventoryBranchBatchController;
+use App\Http\Controllers\InventoryMovementController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SupplierController;
@@ -80,4 +81,8 @@ Route::prefix('/admin/inventory/batches')->middleware('auth')->group(function ()
 Route::prefix('/admin/inventory/branches_in_batches')->middleware('auth')->group(function () {
     Route::get('/', [InventoryBranchBatchController::class, 'index'])->name('branches_in_batches');
     Route::get('/inventory_in_branch/branch/{branch}', [InventoryBranchBatchController::class, 'showInventoryInBranch'])->name('inventory_in_branch');
+});
+
+Route::prefix('/admin/inventory')->middleware('auth')->group(function () {
+    Route::get('/movements', [InventoryMovementController::class, 'index'])->name('movements');
 });

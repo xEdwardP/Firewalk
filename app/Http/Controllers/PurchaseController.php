@@ -62,6 +62,27 @@ class PurchaseController extends Controller
         ]);
     }
 
+    public function show(Purchase $purchase)
+    {
+        $formattedDate = \Carbon\Carbon::parse($purchase->purchased_at)->format('d/m/Y');
+        $purchase->load('details.product', 'supplier');
+        $movement = InventoryMovement::whereHas('batch', function ($query) use ($purchase) {
+            $query->whereIn('id', $purchase->details->pluck('batch_id'));
+        })->where('movement_type', 'Entrada')->first();
+
+        $branch = null;
+        if ($movement) {
+            $branch = Branch::findOrFail($movement->branch_id);
+        }
+
+        return view('admin.purchases.show', [
+            'title' => 'Detalle de Compra Nº ' . $purchase->id,
+            'formattedDate' => $formattedDate,
+            'purchase' => $purchase,
+            'branch' => $branch,
+        ]);
+    }
+
     public function sendEmail(Purchase $purchase)
     {
         try {

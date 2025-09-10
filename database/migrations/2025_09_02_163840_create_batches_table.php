@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
             $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
-            $table->string('batch_code')->unique();
+            $table->string('batch_code');
             $table->date('received_at');
             $table->date('expires_at')->nullable();
             $table->integer('starting_quantity');
