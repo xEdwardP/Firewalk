@@ -63,14 +63,17 @@
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center">
                                             <a href="{{ route('purchases.show', $item->id) }}"
-                                                class="btn btn-sm btn-info rounded-pill px-3">
-                                                <i class="fa-solid fa-eye"></i>&nbsp;Ver
+                                                class="btn btn-sm btn-info rounded-pill px-4 py-1" title="Ver">
+                                                <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('purchases.edit', $item->id) }}"
-                                                class="btn btn-sm btn-warning rounded-pill px-3 ml-2">
-                                                <i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar
-                                            </a>
-                                            <x-delete-button :action="route('purchases.destroy', $item->id)" :item-id="$item->id" label="Eliminar" />
+                                            @if ($item->payment_status != 'finalizada')
+                                                <a href="{{ route('purchases.edit', $item->id) }}"
+                                                    class="btn btn-sm btn-warning rounded-pill px-4 py-1 ml-2" title="Editar">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <x-delete-button :action="route('purchases.destroy', $item->id)" :item-id="$item->id"
+                                                    :disabled="$item->payment_status === 'finalizada'" />
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

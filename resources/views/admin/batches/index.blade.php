@@ -15,6 +15,50 @@
             <div class="card card-outline card-primary shadow-sm">
                 <div class="card-header d-flex justify-content-between align-items-center py-2">
                     <h5 class="card-title mb-0">
+                        <i class="fas fa-filter"></i>&nbsp;Filtrado de Lotes
+                    </h5>
+                </div>
+
+                <div class="card-body">
+                    <form action="{{ route('batches') }}" method="GET">
+                        @csrf
+                        <div class="form-row align-items-end">
+                            <div class="col-md-3 mb-2">
+                                <label for="from" class="text-muted">Desde</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" name="from" id="from">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <label for="to" class="text-muted">Hasta</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
+                                    </div>
+                                    <input type="date" class="form-control" name="to" id="to">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-2">
+                                <button type="submit" class="btn btn-outline-primary btn-block">
+                                    <i class="fas fa-search"></i>
+                                    <span class="d-none d-md-inline">&nbsp;Filtrar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="card card-outline card-primary shadow-sm">
+                <div class="card-header d-flex justify-content-between align-items-center py-2">
+                    <h5 class="card-title mb-0">
                         <i class="fas fa-warehouse"></i>&nbsp;Lotes Registrados
                     </h5>
                 </div>
@@ -28,6 +72,7 @@
                                 <th>Producto</th>
                                 <th>Proveedor</th>
                                 <th>Vencimiento</th>
+                                <th>Dias Restantes</th>
                                 <th>Cantidad Actual</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
@@ -41,13 +86,22 @@
                                     <td class="align-middle">{{ $batch->product->name }}</td>
                                     <td class="align-middle">{{ $batch->supplier->name }}</td>
                                     <td class="text-center align-middle">{{ $batch->expires_at }}</td>
+                                    <td class="text-center align-middle">{{ $batch->days_to_expire }} dias</td>
                                     <td class="text-center align-middle">{{ $batch->remaining_quantity }}</td>
                                     <td class="text-center align-middle">
-                                        <span
-                                            class="badge badge-pill
-                                        {{ $batch->is_expired ? 'badge-danger' : 'badge-success' }}">
-                                            {{ $batch->is_expired ? 'Vencido' : 'Vigente' }}
-                                        </span>
+                                        @if ($batch->is_expired)
+                                            <span class="badge badge-danger">
+                                                <i class="fas fa-times-circle"></i>&nbsp;Vencido
+                                            </span>
+                                        @elseif ($batch->days_to_expire <= 30)
+                                            <span class="badge badge-warning">
+                                                <i class="fas fa-exclamation-triangle"></i>&nbsp;Por caducar
+                                            </span>
+                                        @else
+                                            <span class="badge badge-success">
+                                                <i class="fas fa-check-circle"></i>&nbsp;Vigente
+                                            </span>
+                                        @endif
                                     </td>
                                     <td class="text-center align-middle">
                                         <button type="button" class="btn btn-sm btn-info rounded-pill px-3"
@@ -87,7 +141,8 @@
                                                             </div>
                                                             <div class="col-md-6 mb-3">
                                                                 <label class="text-muted">Estado</label>
-                                                                <div class="d-flex align-items-center justify-content-center">
+                                                                <div
+                                                                    class="d-flex align-items-center justify-content-center">
                                                                     <i
                                                                         class="fas {{ $batch->is_expired ? 'fa-times-circle text-danger' : 'fa-check-circle text-success' }} mr-2"></i>
                                                                     <span

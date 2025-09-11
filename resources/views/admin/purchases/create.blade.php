@@ -39,7 +39,7 @@
 
                             <div class="form-group col-md-12 mb-2">
                                 <x-ui.form.textarea-input name="observations" label="Observaciones"
-                                    placeholder="Ingrese la observacion" icon="fas fa-map-marker-alt" maxlength="255" />
+                                    placeholder="Ingrese la observacion" icon="fas fa-comment-alt" maxlength="255" />
                             </div>
                         </div>
 

@@ -63,7 +63,7 @@
                             <label class="text-muted">Sucursal de destino</label>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-store-alt text-info mr-2"></i>
-                                <span class="font-weight-bold">{{ $branch->name }}</span>
+                                <span class="font-weight-bold">{{ $branch ? $branch->name : 'Sin asignar' }}</span>
                             </div>
                         </div>
 

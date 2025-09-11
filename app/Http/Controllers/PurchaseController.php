@@ -83,6 +83,31 @@ class PurchaseController extends Controller
         ]);
     }
 
+    public function destroy(Purchase $purchase)
+    {
+        if ($purchase->payment_status == 'finalizada') {
+            return to_route('purchases')->with('error', 'No se puede eliminar una compra finalizada.');
+        }
+
+        DB::beginTransaction();
+
+        try {
+            foreach ($purchase->details as $detail) {
+                $batch = $detail->batch;
+                $batch->delete();
+                $detail->delete();
+            }
+
+            $purchase->delete();
+
+            DB::commit();
+            return redirect()->route('purchases')->with('success', 'Compra eliminada exitosamente.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return to_route('purchases')->with('error', 'No se pudo eliminar: ' . $th->getMessage());
+        }
+    }
+
     public function sendEmail(Purchase $purchase)
     {
         try {
